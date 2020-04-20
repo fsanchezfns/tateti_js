@@ -31,25 +31,25 @@
     <input type="text " id="name2">
 
     <br>
-    <button class="btnppal " onclick="asginarNombres(document.getElementById('name1').value,document.getElementById('name2').value) "> Jugar </button>
+    <button class="btnppal " onclick="assignName(document.getElementById('name1').value,document.getElementById('name2').value) "> Jugar </button>
 
     <br> <br>
 
     <table class="board ">
         <tr>
-            <td class="tdBoard" onclick="markBoard(0,0,'f')"></td>
-            <td class="tdBoard" onclick="markBoard(0,1,'f')"></td>
-            <td class="tdBoard " onclick="markBoard(0,2,'f')"></td>
+            <td class="tdBoard" id="00" onclick="markBoard(0,0)"></td>
+            <td class="tdBoard" id="01" onclick="markBoard(0,1)"></td>
+            <td class="tdBoard" id="02" onclick="markBoard(0,2)"></td>
         </tr>
         <tr>
-            <td class="tdBoard" onclick="markBoard(1,0,'f')"></td>
-            <td class="tdBoard " onclick="markBoard(1,1,'f')"></td>
-            <td class="tdBoard " onclick="markBoard(1,2,'f')"></td>
+            <td class="tdBoard" id="10" onclick="markBoard(1,0)"></td>
+            <td class="tdBoard" id="11" onclick="markBoard(1,1)"></td>
+            <td class="tdBoard" id="12" onclick="markBoard(1,2)"></td>
         </tr>
         <tr>
-            <td class="tdBoard " onclick="markBoard(2,0,'f')"></td>
-            <td class=" tdBoard " onclick="markBoard(2,1, 'f')"></td>
-            <td class="tdBoard " onclick="markBoard(2,2,'f')"></td>
+            <td class="tdBoard" id="20" onclick="markBoard(2,0)"></td>
+            <td class="tdBoard" id="21" onclick="markBoard(2,1)"></td>
+            <td class="tdBoard" id="22" onclick="markBoard(2,2)"></td>
         </tr>
 
 
