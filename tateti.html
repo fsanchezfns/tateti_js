@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="Tateti - Programacion avanzada" content="width=device-width, initial-scale=1.0">
+    <title>Tateti - Programacion avanzada</title>
+
+    <script type="text/javascript" src="tateti.js"></script>
+    <link rel="stylesheet" type="text/css" href="tateti.css" media="screen" />
+</head>
+
+<body>
+
+    <h1>Juego del tateti</h1>
+
+    <p>Para poder comenzar con el juego es necesario ingresar los nombres de los jugadores</p> <br>
+
+    <div id="msgReponse">
+
+    </div>
+    <br>
+
+    <label for=" lblname1 ">Nombre jugador 1:</label>
+    <input type="text " id="name1">
+
+    <br>
+    <br>
+
+    <label for="lblname2 ">Nombre jugador 2:</label>
+    <input type="text " id="name2">
+
+    <br>
+    <button class="btnppal " onclick="asginarNombres(document.getElementById('name1').value,document.getElementById('name2').value) "> Jugar </button>
+
+    <br> <br>
+
+    <table class="board ">
+        <tr>
+            <td class="tdBoard" onclick="markBoard(0,0,'f')"></td>
+            <td class="tdBoard" onclick="markBoard(0,1,'f')"></td>
+            <td class="tdBoard " onclick="markBoard(0,2,'f')"></td>
+        </tr>
+        <tr>
+            <td class="tdBoard" onclick="markBoard(1,0,'f')"></td>
+            <td class="tdBoard " onclick="markBoard(1,1,'f')"></td>
+            <td class="tdBoard " onclick="markBoard(1,2,'f')"></td>
+        </tr>
+        <tr>
+            <td class="tdBoard " onclick="markBoard(2,0,'f')"></td>
+            <td class=" tdBoard " onclick="markBoard(2,1, 'f')"></td>
+            <td class="tdBoard " onclick="markBoard(2,2,'f')"></td>
+        </tr>
+
+
+
+    </table>
+
+
+
+</body>
+
+</html>
