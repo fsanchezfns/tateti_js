@@ -10,32 +10,39 @@
     <link rel="stylesheet" type="text/css" href="tateti.css" media="screen" />
 </head>
 
-<body>
+<body onload="init()">
 
-    <h1>Juego del tateti</h1>
+    <h1>JUEGO DEL TATETI</h1>
 
     <p>Para poder comenzar con el juego es necesario ingresar los nombres de los jugadores</p> <br>
 
-    <div id="msgReponse">
+    <div id="msgReponse" class="msg">
 
     </div>
     <br>
 
-    <label for=" lblname1 ">Nombre jugador 1:</label>
+    <div class="markOne"></div>
+    <label for=" lblname1 ">Jugador 1:</label>
     <input type="text " id="name1">
 
+
     <br>
     <br>
 
-    <label for="lblname2 ">Nombre jugador 2:</label>
+    <div class="markTwo"></div>
+    <label for="lblname2 ">Jugador 2:</label>
     <input type="text " id="name2">
 
+
     <br>
-    <button class="btnppal " onclick="assignName(document.getElementById('name1').value,document.getElementById('name2').value) "> Jugar </button>
+    <br>
+    <button class="btnppal " id="btnplay" onclick="play(document.getElementById('name1').value,document.getElementById('name2').value) "> Jugar </button>
+
+    <button class="btnppal" id="btnreset" style="display: none;" onclick="init()">Reiniciar</button>
 
     <br> <br>
 
-    <table class="board ">
+    <table id="boardPpal" class="board">
         <tr>
             <td class="tdBoard" id="00" onclick="markBoard(0,0)"></td>
             <td class="tdBoard" id="01" onclick="markBoard(0,1)"></td>

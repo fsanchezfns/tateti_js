@@ -1,14 +1,21 @@
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
 .btnppal {
-    background-color: lightseagreen;
+    color: #ffffff;
+    width: 70px;
+    height: 40px;
+    background-color: #428779;
     border-radius: 3px;
-    border: 1px solid black;
+    border: 1px solid #428779;
 }
 
-.markX {
-    background-color: blue;
+.boardInit {
+    width: 200px;
+    height: 200px;
+    background-color: honeydew;
 }
-
-.markO {}
 
 .board {
     width: 200px;
@@ -19,53 +26,112 @@
     width: 30px;
     height: 30px;
     border: 1px solid gray;
-    background-color: honeydew;
+    background-color: #aaaaaa;
 }
 
 .tdBoardOne {
     width: 30px;
     height: 30px;
-    border: 1px solid gray;
-    background-color: red;
+    border: 1px solid rgb(233, 198, 83);
+    background-color: #EDE4C7;
+}
+
+.markOne {
+    width: 15px;
+    height: 15px;
+    border: 1px solid rgb(233, 198, 83);
+    background-color: #EDE4C7;
+    display: inline-block;
+    padding: 1px;
+}
+
+.msgOne {
+    color: rgb(151, 129, 58);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    width: 50%;
+    height: 40px;
+    background-color: #EDE4C7;
+    position: relative;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    border-color: rgb(233, 198, 83);
 }
 
 .tdBoardTwo {
     width: 30px;
     height: 30px;
-    border: 1px solid gray;
-    background-color: blue;
+    border: 1px solid rgb(86, 179, 162);
+    background-color: #C7EDE6;
+}
+
+.markTwo {
+    width: 15px;
+    height: 15px;
+    border: 1px solid rgb(86, 179, 162);
+    background-color: #C7EDE6;
+    display: inline-block;
+    padding: 1px;
+}
+
+.msgTwo {
+    color: #117391d0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: bold;
+    width: 50%;
+    height: 40px;
+    background-color: #C7EDE6;
+    position: relative;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    border-color: rgb(86, 179, 162);
 }
 
 .msgError {
-    color: #ac1a17f1;
-    font-family: Arial, Helvetica, sans-serif;
+    color: #721c24;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: bold;
     width: 50%;
     height: 40px;
-    background-color: #bd6d6cf1;
-    border-radius: 4px;
+    background-color: #f8d7da;
+    position: relative;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    border-color: #f5c6cb;
 }
 
 .msgOk {
-    color: #179b1e;
-    font-family: Arial, Helvetica, sans-serif;
-    font-style: normal;
+    color: #155724;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: bold;
-    text-align: center;
     width: 50%;
     height: 40px;
-    background-color: #aed581;
-    border-radius: 4px;
+    background-color: #d4edd6;
+    position: relative;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    border-color: #c3e6cb;
 }
 
 .msgInfo {
-    color: #0c5e61;
-    font-family: Arial, Helvetica, sans-serif;
-    font-style: normal;
+    color: #0c5460;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     font-weight: bold;
-    text-align: center;
     width: 50%;
     height: 40px;
-    background-color: #0ad1d8;
-    border-radius: 4px;
+    background-color: #d1ecf1;
+    position: relative;
+    padding: .75rem 1.25rem;
+    margin-bottom: 1rem;
+    border: 1px solid transparent;
+    border-radius: .25rem;
+    border-color: #bee5eb;
 }

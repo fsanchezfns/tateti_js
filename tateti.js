@@ -14,24 +14,57 @@ var _response = {
     "msg": ""
 }
 
-//inicializo todos con el valor 0 como valor vacio
 var _board = [];
-_board[0] = [0, 0, 0];
-_board[1] = [0, 0, 0];
-_board[2] = [0, 0, 0];
+var _player;
+var isWin;
+var isPlay;
 
-var _player = _player2
-var isWin = false;
+function init() {
 
+    _board[0] = [0, 0, 0];
+    _board[1] = [0, 0, 0];
+    _board[2] = [0, 0, 0];
+
+    isWin = false;
+    isPlay = false;
+
+    hlResponse("S", "")
+
+    //view
+    document.getElementById("name1").readOnly = false;
+    document.getElementById("name2").readOnly = false;
+    document.getElementById("boardPpal").className = "boardInit"
+        //document.getElementsByClassName("tdBoard").className = "tdBoard"
+    document.getElementById("btnreset").style.display = "none"
+    document.getElementById("btnplay").style.display = "block"
+}
+
+
+function play(name1, name2) {
+    isOk = assignName(name1, name2);
+
+    if (isOk) {
+        hlResponse('S', "")
+        isPlay = true
+        randomPlayer();
+
+        //view
+        document.getElementById("name1").readOnly = true;
+        document.getElementById("name2").readOnly = true;
+        document.getElementById("btnplay").style.display = "none";
+
+
+    }
+}
 
 
 function markBoard(fila, colum) {
-    if (isWin == false) { //si no hay ganador evaluo toda la logica
+    if (isWin == false && isPlay == true) { //si no hay ganador y se esta jugando evaluo toda la logica
 
         value = _board[fila][colum];
-        response = checkLibre(value); //verifico si el casillero esta libre
+        isLibre = checkLibre(value); //verifico si el casillero esta libre
 
-        if (response.status == 'S') {
+        if (isLibre == true) {
             indexString = fila.toString() + colum.toString(); //recupero el id de html
             indexBoard = document.getElementById(indexString);
             _board[fila][colum] = _player.id; //asigno el casillero al player
@@ -52,9 +85,23 @@ function markBoard(fila, colum) {
             isWin = checkWin(_board) //verifco ganador
 
             if (isWin) {
-                hlResponse('F', 'gano el jugador ' + playerAux.name)
+                hlResponse(playerAux.id, '¡HAS GANADO ' + playerAux.name + '!');
+                document.getElementById("btnreset").style.display = "block";
+
+
             } else {
-                hlResponse("M", 'Le toca jugar a ' + _player.name);
+
+                isEnd = checkEnd(_board)
+
+                if (isEnd) {
+                    hlResponse("N", "FIN DEL JUEGO")
+                    isPlay = false;
+                    document.getElementById("btnreset").style.display = "block";
+
+                } else {
+
+                    hlResponse(_player.id, "JUEGA " + _player.name);
+                }
             }
 
         }
@@ -62,39 +109,58 @@ function markBoard(fila, colum) {
 }
 
 
-function checkLibre(valor) { //Verifico si el casillero esta libre
-    if (valor == 0) {
-        res = hlResponse("S", "");
+function randomPlayer() { //seleciono random el jugador
+    n = Math.random()
+    if (n > 0.5) {
+        _player = _player1;
     } else {
-        res = hlResponse("N", "El casillero esta ocupado");
+        _player = _player2;
     }
-    return res;
+    hlResponse(_player.id, "JUEGA " + _player.name)
 }
 
+
+
+
 function assignName(name1, name2) {
-    response = checkName(name1, name2);
-    if (response.status == 'S') {
-        _player1.name = name1;
-        _player2.name = name2;
+    isOk = checkName(name1, name2);
+
+    if (isOk) {
+        _player1.name = name1.toUpperCase();
+        _player2.name = name2.toUpperCase();;
     }
 
+    return isOk;
 }
 
 
 function checkName(name1, name2) {
     if (name1 == "") {
-        return hlResponse("N", "El nombre del primer jugador no puede estar vacio");
+        hlResponse("N", "INGRESAR JUGADOR 1");
+        return false
     }
 
     if (name2 == "") {
-        return hlResponse("N", "El nombre del segundo jugador no puede estar vacio");
+        hlResponse("N", "INGRESAR JUGADOR 2");
+        return false
     }
 
-    if (name1 == name2) {
-        return hlResponse("N", "Los nombres deben ser diferentes");
+    if (name1.toUpperCase() == name2.toUpperCase()) {
+        hlResponse("N", "LOS JUGADORES DEBEN SER DIFERENTES");
+        return false
     }
 
-    return hlResponse("S", "");
+    return true;
+}
+
+function checkLibre(valor) { //Verifico si el casillero esta libre
+    if (valor == 0) {
+        hlResponse("S", "");
+        return true;
+    } else {
+        hlResponse("N", "EL CASILLERO ESTA OCUPADO");
+        return false;
+    }
 }
 
 function checkWin(board) {
@@ -116,6 +182,26 @@ function checkWin(board) {
 }
 
 
+function checkEnd(board) {
+    isEnd = true;
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 3; j++) {
+            if (board[i][j] == 0) isEnd = false; //si alguno es igual a 0 => alguno es vacio
+        }
+    }
+    return isEnd;
+}
+
+/*
+function toUpper(id) { //solo para view 
+    console.log("fraco")
+    str = document.getElementById(id);
+    value = str.value.toUpperCase()
+    console.log(value.toUpperCase())
+    str.innerHTML = "asdasdasdasd"
+}
+*/
+
 function hlResponse(status, msg) {
     _response.status = status;
     _response.msg = msg;
@@ -130,8 +216,14 @@ function hlResponse(status, msg) {
             msgVisor.innerHTML = msg;
             break;
 
-        case "M":
-            msgVisor.className = "msgInfo"
+        case 1: //one
+            msgVisor.className = "msgOne"
+            msgVisor.style.display = "block";
+            msgVisor.innerHTML = msg;
+            break;
+
+        case 2: //two
+            msgVisor.className = "msgTwo"
             msgVisor.style.display = "block";
             msgVisor.innerHTML = msg;
             break;
