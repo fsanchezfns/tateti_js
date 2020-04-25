@@ -17,11 +17,6 @@ body {
     background-color: honeydew;
 }
 
-.board {
-    width: 200px;
-    height: 200px;
-}
-
 .tdBoard {
     width: 30px;
     height: 30px;

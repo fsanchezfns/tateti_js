@@ -28,15 +28,24 @@ function init() {
     isWin = false;
     isPlay = false;
 
-    hlResponse("S", "")
+    hlResponse("S", "");
 
     //view
     document.getElementById("name1").readOnly = false;
     document.getElementById("name2").readOnly = false;
-    document.getElementById("boardPpal").className = "boardInit"
-        //document.getElementsByClassName("tdBoard").className = "tdBoard"
-    document.getElementById("btnreset").style.display = "none"
-    document.getElementById("btnplay").style.display = "block"
+    document.getElementById("btnreset").style.display = "none";
+    document.getElementById("btnplay").style.display = "block";
+
+    //inicializador DE TD 
+    for (i = 0; i < 3; i++) {
+        for (j = 0; j < 3; j++) {
+            id = i + '' + j
+            document.getElementById(id).className = "tdBoard";
+        }
+
+    }
+
+
 }
 
 
@@ -44,8 +53,8 @@ function play(name1, name2) {
     isOk = assignName(name1, name2);
 
     if (isOk) {
-        hlResponse('S', "")
-        isPlay = true
+        hlResponse('S', "");
+        isPlay = true;
         randomPlayer();
 
         //view
@@ -68,7 +77,7 @@ function markBoard(fila, colum) {
             indexString = fila.toString() + colum.toString(); //recupero el id de html
             indexBoard = document.getElementById(indexString);
             _board[fila][colum] = _player.id; //asigno el casillero al player
-            playerAux = _player //guardo el player para verificar el ganador
+            playerAux = _player; //guardo el player para verificar el ganador
 
             switch (_player) { //logica para asignar el otro jugador y para el css
                 case _player1:
@@ -91,10 +100,10 @@ function markBoard(fila, colum) {
 
             } else {
 
-                isEnd = checkEnd(_board)
+                isEnd = checkEnd(_board);
 
                 if (isEnd) {
-                    hlResponse("N", "FIN DEL JUEGO")
+                    hlResponse("N", "FIN DEL JUEGO");
                     isPlay = false;
                     document.getElementById("btnreset").style.display = "block";
 
@@ -110,13 +119,13 @@ function markBoard(fila, colum) {
 
 
 function randomPlayer() { //seleciono random el jugador
-    n = Math.random()
+    n = Math.random();
     if (n > 0.5) {
         _player = _player1;
     } else {
         _player = _player2;
     }
-    hlResponse(_player.id, "JUEGA " + _player.name)
+    hlResponse(_player.id, "JUEGA " + _player.name);
 }
 
 
@@ -127,7 +136,7 @@ function assignName(name1, name2) {
 
     if (isOk) {
         _player1.name = name1.toUpperCase();
-        _player2.name = name2.toUpperCase();;
+        _player2.name = name2.toUpperCase();
     }
 
     return isOk;
@@ -137,17 +146,17 @@ function assignName(name1, name2) {
 function checkName(name1, name2) {
     if (name1 == "") {
         hlResponse("N", "INGRESAR JUGADOR 1");
-        return false
+        return false;
     }
 
     if (name2 == "") {
         hlResponse("N", "INGRESAR JUGADOR 2");
-        return false
+        return false;
     }
 
     if (name1.toUpperCase() == name2.toUpperCase()) {
         hlResponse("N", "LOS JUGADORES DEBEN SER DIFERENTES");
-        return false
+        return false;
     }
 
     return true;
@@ -223,13 +232,13 @@ function hlResponse(status, msg) {
             break;
 
         case 2: //two
-            msgVisor.className = "msgTwo"
+            msgVisor.className = "msgTwo";
             msgVisor.style.display = "block";
             msgVisor.innerHTML = msg;
             break;
 
         case "F":
-            msgVisor.className = "msgOk"
+            msgVisor.className = "msgOk";
             msgVisor.style.display = "block";
             msgVisor.innerHTML = msg;
             break;
