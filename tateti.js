@@ -19,6 +19,13 @@ var _player;
 var isWin;
 var isPlay;
 
+//mensages
+const msgOne = 1;
+const msgTwo = 2;
+const msgError = 'N';
+const msgOk = 'S';
+
+
 function init() {
 
     _board[0] = [0, 0, 0];
@@ -28,7 +35,7 @@ function init() {
     isWin = false;
     isPlay = false;
 
-    hlResponse("S", "");
+    hlResponse(msgOk, "");
 
     //view
     document.getElementById("name1").readOnly = false;
@@ -53,7 +60,6 @@ function play(name1, name2) {
     isOk = assignName(name1, name2);
 
     if (isOk) {
-        hlResponse('S', "");
         isPlay = true;
         randomPlayer();
 
@@ -103,7 +109,7 @@ function markBoard(fila, colum) {
                 isEnd = checkEnd(_board);
 
                 if (isEnd) {
-                    hlResponse("N", "FIN DEL JUEGO");
+                    hlResponse(msgError, "FIN DEL JUEGO");
                     isPlay = false;
                     document.getElementById("btnreset").style.display = "block";
 
@@ -145,17 +151,17 @@ function assignName(name1, name2) {
 
 function checkName(name1, name2) {
     if (name1 == "") {
-        hlResponse("N", "INGRESAR JUGADOR 1");
+        hlResponse(msgError, "INGRESAR JUGADOR 1");
         return false;
     }
 
     if (name2 == "") {
-        hlResponse("N", "INGRESAR JUGADOR 2");
+        hlResponse(msgError, "INGRESAR JUGADOR 2");
         return false;
     }
 
     if (name1.toUpperCase() == name2.toUpperCase()) {
-        hlResponse("N", "LOS JUGADORES DEBEN SER DIFERENTES");
+        hlResponse(msgError, "LOS JUGADORES DEBEN SER DIFERENTES");
         return false;
     }
 
@@ -164,10 +170,10 @@ function checkName(name1, name2) {
 
 function checkLibre(valor) { //Verifico si el casillero esta libre
     if (valor == 0) {
-        hlResponse("S", "");
+        hlResponse(msgOk, "");
         return true;
     } else {
-        hlResponse("N", "EL CASILLERO ESTA OCUPADO");
+        hlResponse(msgError, "EL CASILLERO ESTA OCUPADO");
         return false;
     }
 }
@@ -201,16 +207,6 @@ function checkEnd(board) {
     return isEnd;
 }
 
-/*
-function toUpper(id) { //solo para view 
-    console.log("fraco")
-    str = document.getElementById(id);
-    value = str.value.toUpperCase()
-    console.log(value.toUpperCase())
-    str.innerHTML = "asdasdasdasd"
-}
-*/
-
 function hlResponse(status, msg) {
     _response.status = status;
     _response.msg = msg;
@@ -219,31 +215,26 @@ function hlResponse(status, msg) {
 
     switch (status) {
 
-        case "N":
+        case msgError:
             msgVisor.className = "msgError"
             msgVisor.style.display = "block";
             msgVisor.innerHTML = msg;
             break;
 
-        case 1: //one
+        case msgOne: //one
             msgVisor.className = "msgOne"
             msgVisor.style.display = "block";
             msgVisor.innerHTML = msg;
             break;
 
-        case 2: //two
+        case msgTwo: //two
             msgVisor.className = "msgTwo";
             msgVisor.style.display = "block";
             msgVisor.innerHTML = msg;
             break;
 
-        case "F":
-            msgVisor.className = "msgOk";
-            msgVisor.style.display = "block";
-            msgVisor.innerHTML = msg;
-            break;
 
-        default:
+        default: //msgOk
             msgVisor.style.display = "none"; //S
     }
 
